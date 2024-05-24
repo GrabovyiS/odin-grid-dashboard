@@ -12,3 +12,20 @@ a {
   text-decoration: none;
 }
 
+.main-grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(150px, 12%) 1fr;
+}
+
+.main-grid-container aside {
+  grid-area: 1 / 1 / span 2 / span 1;
+}
+
+.main-grid-container main {
+  grid-area: 2 / 2 / span 1 / span 1;
+}
+
+.main-grid-container header {
+  grid-area: 1 / 2 / span 1 / span 1;
+}
