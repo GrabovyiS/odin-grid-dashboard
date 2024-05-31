@@ -24,6 +24,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 :root {
   --blue: rgb(31, 104, 199);
+  --container-card-shadow: 3px 3px 8px 0px rgba(0,0,0,0.2);
 }
 
 .main-grid-container {
@@ -33,7 +34,10 @@ input[type="search"]::-webkit-search-results-decoration {
   grid-template-columns: min(280px, 25%) 1fr;
 }
 
-.main-grid-container aside {
+.main-grid-container .main-sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
   grid-area: 1 / 1 / span 2 / span 1;
   color: white;
   background-color: var(--blue);
@@ -79,12 +83,15 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 header {
-  padding: 20px 40px 10px 40px;
+  z-index: 1;
+  padding: 20px 50px 10px 50px;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.15);
 }
 
 header nav {
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
   
   .search-icon {
     margin-right: 20px;
@@ -123,5 +130,214 @@ header nav {
   .user-name {
     font-weight: bold;
     margin-left: 20px;
+    margin-right: 10px;
   }
+}
+
+header .profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .profile-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    align-items: center;  
+    
+    .profile-picture {
+      grid-area: 1 / 1 / span 2 / span 1;
+      width: 56px;
+      height: 56px;
+      border-radius: 28px;
+      background-color: gray;
+    }
+
+    .caption {
+      grid-area: 1 / 2 / span 1 / span 1;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .user-name {
+      grid-area: 2 / 2 / 3 / 3;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    .caption, .user-name {
+      padding-left: 16px;
+    }
+  }
+
+  .profile-buttons {
+    display: flex;
+    gap: 25px;
+    button {
+      min-width: 90px;
+      padding: 8px 0;
+      border-radius: 35px;
+      font-weight: bold;
+      font-size: 15px;
+      background-color: var(--blue);
+      color: white;
+      outline: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+main {
+  background-color: rgb(198, 206, 219);
+  padding: 32px 32px 32px 16px;
+
+  h1 {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+}
+
+section.main-container {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 25%);
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+}
+
+aside {
+  h3 {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 8px; 
+  }
+
+  & .container {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--container-card-shadow);
+  }
+}
+
+.announcements {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  margin-bottom: 16px;
+  
+  .container {
+    padding: 32px;
+    gap: 16px;
+    /* display: flex; */
+    /* flex-direction: column; */
+  }
+  
+  p {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  h4 {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .line {
+    height: 1px;
+    background-color: #888;
+  }
+}
+
+.trending {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.projects {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+.projects-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  gap: 16px;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: var(--container-card-shadow);
+    border-radius: 8px;
+    border-left: 8px solid rgb(255, 157, 0);
+    padding: 32px 16px 32px 16px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 48px;
+    }
+
+    .card-icons {
+      height: 24px;
+      display: flex;
+      gap: 32px;
+      justify-content: flex-end;
+
+      svg {
+        width: 24px;
+      }
+    }
+  }
+}
+
+.trending .container {
+  padding: 16px;
+}
+
+.trend {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 36px auto;
+  column-gap: 16px;
+  row-gap: 2px;
+
+  .trend-pic {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: grey;
+  }
+
+  .trend-caption, .trend-tag {
+    font-size: 14px;
+  }
+
+  .trend-caption {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    color: #888;
+  }
+
+  .trend-tag {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+}
+
+.aside-cards {
+  position: sticky;
+  top: 16px;
 }
